@@ -1,17 +1,16 @@
+import machine
 import time
-
-from gpiozero import OutputDevice
 
 
 class Relay:
     def __init__(self, gpio):
-        self.device = OutputDevice(gpio, active_high=True, initial_value=False)
+        self.pin = machine.Pin(gpio, machine.Pin.OUT)
 
     def on(self):
-        return self.device.on()
+        return self.pin.on()
 
     def off(self):
-        return self.device.off()
+        return self.pin.off()
 
     def open_once(self, ts=1000):
         """
